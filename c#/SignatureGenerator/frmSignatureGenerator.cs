@@ -21,6 +21,12 @@ namespace SignatureGenerator
             InitializeComponent();
         }
 
+        private void FormLoad(object sender, EventArgs e)
+        {
+            string Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            lblVersion.Text = Version + " - " + lblVersion.Text;
+        }
+
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -41,6 +47,8 @@ namespace SignatureGenerator
             txtResultPgpUrlEnc.Text = System.Web.HttpUtility.UrlEncode(result);
 
             txtResultPgpBase64.Text = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(result));
+
+            txtResultSha256.Text = Hash.calculateSHA256Hash(txtCustomerNumber.Text + ":" + txtUserName.Text + ":" + txtPassword.Text, Encoding.UTF8);
 
             Cursor.Current = Cursors.Default;
 
@@ -82,6 +90,7 @@ namespace SignatureGenerator
                 lines += "RAW           = " + txtResultPgpRaw.Text + "\r\n";
                 lines += "URL encoded   = " + txtResultPgpUrlEnc.Text + "\r\n";
                 lines += "Base64 (SOAP) = " + txtResultPgpBase64.Text + "\r\n";
+                lines += "SHA-256       = " + txtResultSha256.Text + "\r\n";
 
                 // Write the string to a file.
                 //System.IO.StreamWriter file = new System.IO.StreamWriter("Saved_File");
@@ -136,7 +145,7 @@ namespace SignatureGenerator
             catch (Exception Ex)
             {
                 Console.WriteLine(Ex.ToString());
-            }        
+            }
         }
     }
 }

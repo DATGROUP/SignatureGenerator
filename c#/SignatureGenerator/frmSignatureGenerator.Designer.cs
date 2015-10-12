@@ -46,8 +46,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.grpResult = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtResultSha256 = new System.Windows.Forms.TextBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.lblVersion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.grpResult.SuspendLayout();
             this.SuspendLayout();
@@ -190,6 +193,8 @@
             // 
             // grpResult
             // 
+            this.grpResult.Controls.Add(this.label2);
+            this.grpResult.Controls.Add(this.txtResultSha256);
             this.grpResult.Controls.Add(this.lblPgpRaw);
             this.grpResult.Controls.Add(this.txtResultPgpRaw);
             this.grpResult.Controls.Add(this.lblPgpBase64);
@@ -198,17 +203,45 @@
             this.grpResult.Controls.Add(this.lblPgpUrlEnc);
             this.grpResult.Location = new System.Drawing.Point(12, 127);
             this.grpResult.Name = "grpResult";
-            this.grpResult.Size = new System.Drawing.Size(846, 112);
+            this.grpResult.Size = new System.Drawing.Size(846, 136);
             this.grpResult.TabIndex = 15;
             this.grpResult.TabStop = false;
             this.grpResult.Text = "Signatures :  ...    Click to copy the content to Clipboard";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 105);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "SHA-256 :";
+            // 
+            // txtResultSha256
+            // 
+            this.txtResultSha256.Location = new System.Drawing.Point(126, 102);
+            this.txtResultSha256.Name = "txtResultSha256";
+            this.txtResultSha256.ReadOnly = true;
+            this.txtResultSha256.Size = new System.Drawing.Size(711, 20);
+            this.txtResultSha256.TabIndex = 13;
+            this.txtResultSha256.Click += new System.EventHandler(this.txtResult_Click);
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(749, 100);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(48, 13);
+            this.lblVersion.TabIndex = 16;
+            this.lblVersion.Text = "10/2015";
             // 
             // frmSignatureGenerator
             // 
             this.AcceptButton = this.btnGenerate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(870, 249);
+            this.ClientSize = new System.Drawing.Size(870, 275);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnGenerate);
@@ -222,6 +255,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSignatureGenerator";
             this.Text = "SilverDAT Signature Generator";
+            this.Load += new System.EventHandler(this.FormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.grpResult.ResumeLayout(false);
             this.grpResult.PerformLayout();
@@ -250,6 +284,9 @@
         private System.Windows.Forms.GroupBox grpResult;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtResultSha256;
+        private System.Windows.Forms.Label lblVersion;
     }
 }
 
